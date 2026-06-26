@@ -1,73 +1,84 @@
-# Agora Conversational AI Next.js Quickstart
+# WatchWise AI: Voice-Powered OTT Discovery
 
 [![Build](https://github.com/AgoraIO-Conversational-AI/agent-quickstart-nextjs/actions/workflows/build-check.yml/badge.svg)](https://github.com/AgoraIO-Conversational-AI/agent-quickstart-nextjs/actions/workflows/build-check.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org/)
 
-Build a production-style voice agent in minutes with Next.js and the Agora Conversational AI Engine, including voice agent visualizer ([Agent UIKit](https://agoraio-conversational-ai.github.io/agent-uikit/)), live transcript, and real-time pipeline latency via `AGENT_METRICS` ([Agent Toolkit](https://github.com/AgoraIO-Conversational-AI/agent-client-toolkit-ts)).
+WatchWise AI is a premium OTT discovery demo built with Next.js, TMDB, and the Agora Conversational AI Engine.
+
+It shows how a streaming platform can let viewers:
+- speak naturally about mood, genre, language, or vibe
+- get instant, clickable rows of movies and TV shows
+- open a title detail page inside the same app
+- ask Agora questions about cast, summary, season info, or similar titles
+- move from search to recommendation to playback intent in one conversational flow
+
+This is designed to help OTT companies see how Agora can power a higher-converting, lower-friction discovery experience.
+
+## Why OTT Teams Care
+
+Traditional OTT navigation usually forces users through search bars, category rails, and endless scrolling. WatchWise AI turns that into a conversation.
+
+With Agora, you can add:
+- voice-first discovery
+- natural-language recommendations
+- contextual follow-up questions
+- title-specific conversations on detail pages
+- real-time voice assistant UX in the browser
+
+For product teams, this demo is a blueprint for:
+- reducing search friction
+- increasing engagement with recommendations
+- improving content discovery on large catalogs
+- making a streaming app feel more premium and interactive
+
+## Demo Highlights
+
+- Netflix-style OTT UI with a custom WatchWise visual design
+- TMDB-powered rails for trending, popular, upcoming, horror, romance, action, and more
+- internal detail pages for movies and TV shows
+- title-specific Agora assistant on every detail page
+- live transcript, agent state, and pipeline latency
+- right-side assistant drawer that feels like a premium OTT companion
 
 ## Prerequisites
 
 - [Node.js 22+](https://nodejs.org/en/download/)
 - [pnpm](https://pnpm.io/installation)
 - [Agora CLI](https://github.com/AgoraIO-Community/cli)
+- A [TMDB developer API key](https://developer.themoviedb.org/docs/getting-started)
 
-## Run It
+## Quick Start
 
-Getting started is quick and easy: install the CLI _(skip if you already have it)_ , scaffold the Next.js quickstart using the Agora CLI, install dependencies, and run.
-
-1. **Install the Agora CLI and sign in**
-   _(skip if `agora` is already on your PATH)_:
+1. Install the Agora CLI and sign in if needed:
 
    ```bash
    curl -fsSL https://raw.githubusercontent.com/AgoraIO/cli/main/install.sh | sh -s -- --add-to-path
    agora login
    ```
 
-2. **Scaffold and run**
-   `agora init` clones the starter, binds an Agora project, and writes `.env.local`. (replace `my-nextjs-demo` with your own project name):
+2. Run the app:
 
    ```bash
-   agora init my-nextjs-demo --template nextjs
-   cd my-nextjs-demo
    pnpm install
    pnpm dev
    ```
 
-3. Open [http://localhost:3000](http://localhost:3000) and click **Start conversation**.
+3. Open [http://localhost:3000](http://localhost:3000).
 
-If the agent does not join or transcripts do not appear, run **`agora project doctor --deep`** to check credentials, feature enablement, network reachability, and local env binding.
+4. Click **Agora** on the home page or open any title card to start a title-specific voice conversation.
 
-### Working from a clone of this repository
+## What You Can Demo
 
-Use this path if you already cloned **this** repo (for example to contribute or fork):
+- “Show me horror movies”
+- “I want something happy”
+- “Give me a date-night movie”
+- “Find me TV shows like this”
+- “Who’s in the cast?”
+- “What’s the summary?”
+- “Show me similar titles”
 
-```bash
-git clone https://github.com/AgoraIO-Conversational-AI/agent-quickstart-nextjs.git
-cd agent-quickstart-nextjs
-agora login
-agora project use <your-project>
-pnpm install
-agora project env write .env.local
-agora project doctor --deep
-pnpm dev
-```
-
-### Deploy to Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAgoraIO-Conversational-AI%2Fagent-quickstart-nextjs&project-name=agent-quickstart-nextjs&repository-name=agent-quickstart-nextjs&env=NEXT_PUBLIC_AGORA_APP_ID,NEXT_AGORA_APP_CERTIFICATE&envDescription=Agora%20credentials%20needed%20to%20run%20the%20app&envLink=https%3A%2F%2Fgithub.com%2FAgoraIO-Conversational-AI%2Fagent-quickstart-nextjs%23run-it&demo-title=Agora%20Conversational%20AI%20Next.js%20Quickstart&demo-description=Official%20Next.js%20quickstart%20for%20building%20browser-based%20voice%20AI%20with%20Agora&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2FAgoraIO-Conversational-AI%2Fagent-quickstart-nextjs%2Fmain%2F.github%2Fassets%2FConversation-Ai-Client.gif)
-
-To populate Vercel env vars from your bound Agora project:
-
-```bash
-agora project use <your-project>
-agora project env write .env.local
-rg "^(NEXT_PUBLIC_AGORA_APP_ID|NEXT_AGORA_APP_CERTIFICATE)=" .env.local
-```
-
-Copy those two values into Vercel Project Settings -> Environment Variables.
-
-### Environment variables
+## Environment Variables
 
 Defined in [`env.local.example`](env.local.example).
 
@@ -76,33 +87,53 @@ Defined in [`env.local.example`](env.local.example).
 | `NEXT_PUBLIC_AGORA_APP_ID`   |    ✅    |    —     | Agora Console → Project → App ID.                                                              |
 | `NEXT_AGORA_APP_CERTIFICATE` |    ✅    |    —     | Agora Console → Project → App Certificate. **Server-side only.**                               |
 | `NEXT_PUBLIC_AGENT_UID`      |          | `123456` | Must match the `agentUid` in [`app/api/invite-agent/route.ts`](app/api/invite-agent/route.ts). |
-| `NEXT_AGENT_GREETING`        |          |    —     | Override the agent's opening line.                                                             |
-| `TMDB_API_KEY`               |    ✅    |    —     | TMDB developer API key for the catalog route in [`app/api/tmdb/home/route.ts`](app/api/tmdb/home/route.ts). |
+| `NEXT_AGENT_GREETING`        |          |    —     | Override the agent opening line.                                                               |
+| `TMDB_API_KEY`               |    ✅    |    —     | TMDB developer API key for catalog and detail pages.                                           |
 
-The default agent configuration in [`app/api/invite-agent/route.ts`](app/api/invite-agent/route.ts) uses Agora-managed STT, LLM, and TTS, so no extra vendor API keys are required for the base quickstart.
+## Where to Put the Keys
 
-For WatchWise, add your TMDB key so the movie and TV rows can load from the API.
+- Put your Agora App ID in `NEXT_PUBLIC_AGORA_APP_ID`
+- Put your Agora App Certificate in `NEXT_AGORA_APP_CERTIFICATE`
+- Put your TMDB API key in `TMDB_API_KEY`
 
-> **Default vs BYOK** — the quickstart ships with Agora-managed inference for a zero-key install. Switch to BYOK below when you need to bring your own provider quotas, models, or vendors.
+If you are using the default demo mode, no extra vendor keys are needed for the Agora-managed STT, LLM, and TTS pipeline.
 
-## Commands
+## Run It with Agora
+
+If you want the full Agora project flow:
 
 ```bash
-# Dev
-pnpm dev                # start the Next.js dev server
-
-# Quality
-pnpm run lint           # eslint
-pnpm run typecheck      # tsc --noEmit
-pnpm run doctor         # local prereqs + env binding
-
-# CI / pre-ship
-pnpm run verify:api     # API contract checks
-pnpm run build          # production build
-pnpm run verify         # doctor + lint + typecheck + verify:api + build
+agora login
+agora project use <your-project>
+agora project env write .env.local
+pnpm install
+pnpm dev
 ```
 
-Run `pnpm run verify` before shipping changes — it covers local prerequisites, lint, type safety, the core API route contracts, and the production build.
+If the agent does not join or transcripts do not appear, run:
+
+```bash
+agora project doctor --deep
+```
+
+## How It Works
+
+1. The browser requests an RTC + RTM token from `/api/generate-agora-token`.
+2. The backend starts an Agora Conversational AI agent in `/api/invite-agent`.
+3. TMDB powers the catalog, home rails, and detail pages.
+4. Users click a title card to open an internal detail page.
+5. The detail page starts a title-specific Agora assistant that can answer questions about that exact movie or show.
+6. On end, the client calls `/api/stop-conversation`, logs out RTM, and cleans up the call view.
+
+## What You Get
+
+- browser voice client built with Next.js App Router
+- RTC audio plus RTM transcript and state events
+- server routes for token generation, invite, and stop
+- TMDB-powered OTT home rails and title pages
+- title-specific detail pages with rich metadata
+- live transcript and real-time pipeline latency
+- Agora-managed default STT, LLM, and TTS configuration
 
 ## Architecture
 
@@ -111,64 +142,53 @@ Run `pnpm run verify` before shipping changes — it covers local prerequisites,
   <img src="./system-architecture.svg" alt="System architecture">
 </picture>
 
-The browser fetches a combined RTC + RTM token (`buildTokenWithRtm`) from this app, joins the channel using a single RTC client, and uses RTM as the data channel for transcript, agent state, metrics, and error events. The Conversational AI Engine joins the same channel as the configured `NEXT_PUBLIC_AGENT_UID` and runs the STT → LLM → TTS pipeline in Agora Cloud.
+The browser fetches an RTC + RTM token from this app, joins the channel using a single RTC client, and uses RTM as the data channel for transcript, agent state, metrics, and error events. The Conversational AI Engine joins the same channel as the configured `NEXT_PUBLIC_AGENT_UID`.
 
-## What You Get
+For OTT discovery, TMDB provides the content rails and the detail pages, while Agora powers the live conversational layer that helps viewers decide what to watch.
 
-- browser voice client built with Next.js App Router
-- RTC audio plus RTM transcript and state events
-- server routes for token generation, invite, and stop
-- [`AgentVisualizer`](https://agoraio-conversational-ai.github.io/agent-uikit/) for agent state and a built-in transcript panel for live turns
-- per-stage latency header driven by `AGENT_METRICS`
-- Agora-managed default STT, LLM, and TTS configuration
-
-## How It Works
-
-1. The browser requests an RTC + RTM token from `/api/generate-agora-token`.
-2. The backend invites an Agora cloud agent with `/api/invite-agent`.
-3. The browser joins the channel and publishes mic audio.
-4. The client receives transcript, agent state, and `AGENT_METRICS` (per-stage latency) events over RTM.
-5. On end, the client calls `/api/stop-conversation`, logs out RTM, and unmounts the call view so Agora React hooks clean up RTC publish/join and the local microphone track.
-
-## Optional BYOK
-
-The quickstart defaults to Agora-managed inference. To bring your own keys, uncomment the matching blocks in [`app/api/invite-agent/route.ts`](app/api/invite-agent/route.ts) and add the corresponding env vars.
+## Commands
 
 ```bash
-# Deepgram STT
-NEXT_DEEPGRAM_API_KEY=...
+# Dev
+pnpm dev
 
-# OpenAI-compatible LLM
-NEXT_LLM_URL=https://api.openai.com/v1/chat/completions
-NEXT_LLM_API_KEY=...
+# Quality
+pnpm run lint
+pnpm run typecheck
+pnpm run doctor
 
-# ElevenLabs TTS
-NEXT_ELEVENLABS_API_KEY=...
-NEXT_ELEVENLABS_VOICE_ID=...
+# CI / pre-ship
+pnpm run verify:api
+pnpm run build
+pnpm run verify
 ```
+
+Run `pnpm run verify` before shipping changes. It covers local prerequisites, lint, type safety, the core API route contracts, and the production build.
 
 ## Repo Map
 
+- `app/page.tsx` — home page entry
+- `app/title/[mediaType]/[id]/page.tsx` — title detail page entry
 - `app/api/generate-agora-token/route.ts` — issues RTC + RTM tokens
-- `app/api/invite-agent/route.ts` — starts the agent session and configures the pipeline
+- `app/api/invite-agent/route.ts` — starts the Agora agent session
 - `app/api/stop-conversation/route.ts` — stops the agent session
-- `components/LandingPage.tsx` — entry point: token fetch, RTM login, conversation lifecycle
-- `components/ConversationComponent.tsx` — RTC client, transcript state, `AGENT_METRICS`, mic release
-- `components/QuickstartConversationLayout.tsx` — in-call header, transcript rail, controls dock
-- `components/QuickstartPipelineMetrics.tsx` — per-stage latency chips in the header
+- `app/api/tmdb/home/route.ts` — TMDB home catalog rails
+- `app/api/tmdb/title/[mediaType]/[id]/route.ts` — TMDB title details
+- `components/LandingPage.tsx` — OTT home experience
+- `components/TitleDetailPage.tsx` — title detail page with Agora drawer
+- `components/ConversationComponent.tsx` — RTC client, transcript state, mic controls
+- `components/QuickstartConversationLayout.tsx` — in-call layout
+- `components/QuickstartPipelineMetrics.tsx` — pipeline latency chips
 - `components/QuickstartTranscriptPanel.tsx` — live transcript rail
-- `components/QuickstartPreCallCard.tsx` — pre-call hero card
-- `lib/conversation.ts` — transcript normalization and visualizer state mapping
-- `AGENTS.md` — primary agent-facing guide
+- `lib/tmdb-title.ts` — shared title fetch helper
+- `lib/watchwise.ts` — TMDB item helpers and mood detection
 
 ## Troubleshooting
 
 - **Agent does not join or transcripts are missing:** run `agora project doctor --deep`.
-- **`pnpm run doctor` fails:** run `agora project env write .env.local`, then retry.
-- **Manual clone / env values:** `agora project use <your-project>` then `agora project env write .env.local`.
-- **RTM login fails:** keep [`app/api/generate-agora-token/route.ts`](app/api/generate-agora-token/route.ts) on `RtcTokenBuilder.buildTokenWithRtm` — RTC-only tokens will not satisfy `rtm.login`.
-- **Transcript speakers inverted:** check the `uid === "0"` remap in [`components/ConversationComponent.tsx`](components/ConversationComponent.tsx).
-- **Agent never appears in channel:** ensure `NEXT_PUBLIC_AGENT_UID` matches the value used in [`app/api/invite-agent/route.ts`](app/api/invite-agent/route.ts).
+- **TMDB rows are empty:** verify `TMDB_API_KEY` is set.
+- **Voice assistant does not start:** verify `NEXT_PUBLIC_AGORA_APP_ID` and `NEXT_AGORA_APP_CERTIFICATE`.
+- **Title detail page looks incomplete:** confirm the TMDB API key is valid and that the selected title exists in TMDB.
 
 ## More Docs
 
@@ -178,7 +198,7 @@ NEXT_ELEVENLABS_VOICE_ID=...
 
 ## Contributing
 
-Pull requests welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and conventions.
+Pull requests welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and conventions.
 
 ## Security
 
